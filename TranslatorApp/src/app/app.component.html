@@ -1,6 +1,6 @@
 <nav class="nav">
   <a routerLink="/dashboard">Dashboard</a>
   <button (click)="logout()" class="btn btn-primary btn-danger"
-  *ngIf='loginService.userUid'> Logout </button>
+  *ngIf='loginService.userUid != null'> Logout </button>
 </nav>
 <router-outlet></router-outlet>
