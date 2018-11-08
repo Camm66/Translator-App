@@ -12,13 +12,13 @@ export class RegisterService {
     private router: Router,
     private db: AngularFireDatabase) { }
 
-    addNewUser(email, password) : boolean{
+    addNewUser(email, password){
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorMessage);
       });
-      this.router.navigate(['/dashboard']);     
+      this.router.navigate(['/dashboard']);
   }
 }

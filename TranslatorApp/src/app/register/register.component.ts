@@ -13,16 +13,16 @@ export class RegisterComponent {
               private registerService: RegisterService) { }
 
   addNewUser(){
-    var password = <HTMLInputElement>document.getElementById("password")
+    var password = <HTMLInputElement>document.getElementById("password");
     var confirm_password = <HTMLInputElement>document.getElementById("confirm_password");
     console.log(password.value);
     console.log(confirm_password.value);
     if(password.value == confirm_password.value){
-      this.registerService.addNewUser(this.email, this.password);     
+      this.registerService.addNewUser(this.email, this.password);
     } else {
       //FIX ME
-      document.getElementById("invalidMsg").innerHTML = "Passwords Don't Match!");
-       confirm_password.setCustomValidity("Passwords Don't Match");
+      document.getElementById("invalidMsg").innerHTML = "Passwords Don't Match!";
+      confirm_password.setCustomValidity("Passwords Don't Match");
     }
   }
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import {AuthGuard} from './login/auth.guard';
 import { AngularFireModule } from '@angular/fire';
@@ -32,7 +32,7 @@ import { RegisterService } from './register/register.service';
     AngularFireAuthModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [LoginService, AuthGuard, RegisterService, WikipediaService],
   bootstrap: [AppComponent]

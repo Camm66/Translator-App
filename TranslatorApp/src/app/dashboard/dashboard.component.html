@@ -9,9 +9,9 @@
 
 <div id='resultContainer'>
   <div *ngIf="wikiResults">
-    <div *ngFor="let item of wikiResults">
-      <h3>{{item.title}}</h3>
-      <div id="{{item.pageid}}"> {{renderWikiHTML(item.snippet, item.pageid)}}</div>
+    <div>
+      <h3>{{wikiResults.displaytitle}}</h3>
+      <div id="wikiText"> {{renderWikiHTML()}}</div>
     </div>
   </div>
 </div>
