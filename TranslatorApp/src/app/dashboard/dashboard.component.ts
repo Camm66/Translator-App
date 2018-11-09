@@ -28,20 +28,19 @@ export class DashboardComponent implements OnInit {
   renderWikiResults(res){
     console.log(res);
     this.wikiResults = res['parse'];
+    this.wikiText = res['parse']['text']['*'].match(/<p>[\S\s]*?<\/p>/gi);
   }
 
-  renderWikiHTML(){
-    var wikiText = this.wikiResults['text']['*'];
-    document.getElementById("wikiText").innerHTML = wikiText;
-
-    console.log(wikiText);
+  renderWikiHTML(item, i){
     var regex = /(<([^>]+)>)/ig,
-    body = wikiText,
-    result = body.replace(regex, "");
+    result = item.replace(regex, "");
+    if(result != null){
+      document.getElementById(i).innerHTML = result;
     }
+  }
 
-  translateWikiHtml(){
-
+  translateWikiHtml(item){
+    console.log("Translate text was pressed.")
   }
 
   ngOnInit() {

@@ -9,9 +9,11 @@
 
 <div id='resultContainer'>
   <div *ngIf="wikiResults">
-    <div>
-      <h3>{{wikiResults.displaytitle}}</h3>
-      <div id="wikiText"> {{renderWikiHTML()}}</div>
-    </div>
+    <h3>{{wikiResults.title}}</h3>
+    <span *ngFor="let item of wikiText; index as i">
+      <div id="{{i}}"> {{renderWikiHTML(item, i)}}</div>
+      <button type="submit" class="btn btn-info" (click)="translateWikiHtml(i)">Translate</button>
+      <br>
+    </span>
   </div>
 </div>
