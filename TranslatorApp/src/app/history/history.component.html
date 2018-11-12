@@ -1,0 +1,8 @@
+<div>
+  <h1>Search History</h1>
+  <div *ngIf='searches'>
+    <div *ngFor="let search of searches">
+      {{search.Userid}} {{search.searchText}} {{search.timestamp}}
+    </div>
+  </div>
+</div>

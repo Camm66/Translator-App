@@ -17,13 +17,15 @@ import { RegisterComponent } from './register/register.component';
 import { WikipediaService } from './services/wikipedia.service';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

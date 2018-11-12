@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WikipediaService } from '../services/wikipedia.service';
+import { HistoryService } from '../history/history.service':
 
 declare var require: any;
 
@@ -13,12 +14,12 @@ export class DashboardComponent implements OnInit {
   searchText: string;
   wikiResults: any;
   wikiText: any;
-  constructor(private wikipediaService: WikipediaService) { }
+  constructor(private wikipediaService: WikipediaService
+              private historyService: HistoryService) { }
 
   search(){
   this.wikipediaService.search(this.searchText)
     .subscribe((res: any) => this.searchForPage(res));
-  //this.hisoryService.updateHistory(this.searchText);
   }
 
   searchForPage(res){
@@ -45,10 +46,17 @@ export class DashboardComponent implements OnInit {
     const translate = require('google-translate-api');
 
     var text = document.getElementById(item).innerHTML;
+    var translation;
     translate( text, {from: 'en', to: 'nl'}).then(res => {
       console.log(res.text);
+      var translation = res.txt;
       document.getElementById(item).innerHTML = res.text;
     });
+      //this.hisoryService.updateHistory("User translated text.", text, translation);
+  }
+
+  addHistory(){
+
   }
 
   ngOnInit() {
