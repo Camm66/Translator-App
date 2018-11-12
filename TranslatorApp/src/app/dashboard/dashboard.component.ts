@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { WikipediaService } from '../services/wikipedia.service';
-import { $ } from 'jquery';
+
+declare var require: any;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
   searchText: string;
   wikiResults: any;
@@ -39,8 +41,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  translateWikiHtml(item){
-    console.log("Translate text was pressed.")
+  translateText(item){
+    const translate = require('google-translate-api');
+
+    var text = document.getElementById(item).innerHTML;
+    translate( text, {from: 'en', to: 'nl'}).then(res => {
+      console.log(res.text);
+      document.getElementById(item).innerHTML = res.text;
+    });
   }
 
   ngOnInit() {
