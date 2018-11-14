@@ -13,11 +13,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { HistoryComponent } from './history/history.component';
 
 import { WikipediaService } from './services/wikipedia.service';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
-import { HistoryComponent } from './history/history.component';
+import { HistoryService } from './history/history.service';
+import { GoogleTranslateService } from './google-translate.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,12 @@ import { HistoryComponent } from './history/history.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [LoginService, AuthGuard, RegisterService, WikipediaService],
+  providers: [LoginService,
+              AuthGuard,
+              RegisterService,
+              WikipediaService,
+              HistoryService,
+              GoogleTranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

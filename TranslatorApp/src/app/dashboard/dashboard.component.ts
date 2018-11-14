@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WikipediaService } from '../services/wikipedia.service';
-import { HistoryService } from '../history/history.service':
-
-declare var require: any;
+import { HistoryService } from '../history/history.service';
+import { GoogleTranslateService } from '../google-translate.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +13,8 @@ export class DashboardComponent implements OnInit {
   searchText: string;
   wikiResults: any;
   wikiText: any;
-  constructor(private wikipediaService: WikipediaService
+  constructor(private wikipediaService: WikipediaService,
+              private googleTranslateService: GoogleTranslateService,
               private historyService: HistoryService) { }
 
   search(){
@@ -43,20 +43,22 @@ export class DashboardComponent implements OnInit {
   }
 
   translateText(item){
-    const translate = require('google-translate-api');
-
-    var text = document.getElementById(item).innerHTML;
+    var divElement = document.getElementById(item);
+    var text = divElement.innerHTML
     var translation;
-    translate( text, {from: 'en', to: 'nl'}).then(res => {
-      console.log(res.text);
-      var translation = res.txt;
-      document.getElementById(item).innerHTML = res.text;
-    });
+    this.googleTranslateService.translate(text).subscribe((res: any) => {
+           console.log(res);
+           translation = res.data.translations[0].translatedText;
+           divElement.outerHTML = `<p>${translation}</p>`;
+         },
+         err => {
+           console.log(err);
+         }
+       );
       //this.hisoryService.updateHistory("User translated text.", text, translation);
   }
 
   addHistory(){
-
   }
 
   ngOnInit() {
