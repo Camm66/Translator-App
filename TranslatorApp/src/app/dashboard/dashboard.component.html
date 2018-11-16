@@ -12,7 +12,7 @@
     <h3>{{wikiResults.title}}</h3>
     <span *ngFor="let item of wikiText; index as i">
       <div id="{{i}}"> {{renderWikiHTML(item, i)}}</div>
-      <button type="submit" class="btn btn-info" (click)="translateText(i)">Translate</button>
+      <button type="submit" class="btn btn-info" (click)="renderTranslatedText(i)">Translate</button>
       <br>
     </span>
   </div>
