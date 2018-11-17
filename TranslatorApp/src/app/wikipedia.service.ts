@@ -6,8 +6,6 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class WikipediaService {
-  static URL = "https://en.wikipedia.org/w/api.php"
-
   constructor(private http: HttpClient){}
 
   search(searchText): Observable<any[]> {

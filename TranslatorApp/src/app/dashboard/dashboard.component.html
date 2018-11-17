@@ -3,7 +3,7 @@
     <label for="search" #title>Wikipedia Search</label>
   </div>
     <input type="text" class="form-control" id="search" name="searchText" required [(ngModel)]='searchText'>
-    <button type="submit" class="btn btn-success">Search</button>
+    <button type="submit" class="btn btn-success" onClick="gtag('event', 'search')">Search</button>
 </form>
 
 

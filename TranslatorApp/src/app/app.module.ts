@@ -15,11 +15,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { HistoryComponent } from './history/history.component';
 
-import { WikipediaService } from './services/wikipedia.service';
+import { WikipediaService } from './wikipedia.service';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
 import { HistoryService } from './history/history.service';
 import { GoogleTranslateService } from './google-translate.service';
+import { TextSectionComponent } from './text-section/text-section.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GoogleTranslateService } from './google-translate.service';
     LoginComponent,
     DashboardComponent,
     RegisterComponent,
-    HistoryComponent
+    HistoryComponent,
+    TextSectionComponent
   ],
   imports: [
     BrowserModule,
