@@ -1,6 +1,6 @@
 <form (ngSubmit)="search()">
   <div class="form-group">
-    <label for="search">Wikipedia Search</label>
+    <label for="search" #title>Wikipedia Search</label>
   </div>
     <input type="text" class="form-control" id="search" name="searchText" required [(ngModel)]='searchText'>
     <button type="submit" class="btn btn-success">Search</button>
@@ -10,10 +10,7 @@
 <div id='resultContainer'>
   <div *ngIf="wikiResults">
     <h3>{{wikiResults.title}}</h3>
-    <span *ngFor="let item of wikiText; index as i">
-      <div id="{{i}}"> {{renderWikiHTML(item, i)}}</div>
-      <button type="submit" class="btn btn-info" (click)="renderTranslatedText(i)">Translate</button>
-      <br>
-    </span>
+    <app-text-section *ngFor="let text of wikiText" [text]="text">
+    </app-text-section>
   </div>
 </div>
