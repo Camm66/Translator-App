@@ -13,13 +13,12 @@ export class LoginService {
   authState: Observable<{} | null>;
   user: Observable<{} | null>;
   userUid: string;
-  adminRef: any;
+  loggedIn: boolean;
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
     private db: AngularFireDatabase
   ) {
-    this.adminRef = this.db.list(`/admins`);
     this.user = this.afAuth.authState
     .switchMap((user) => {
       if (user) {
@@ -63,6 +62,8 @@ export class LoginService {
         const sessionPayloads: any = {};
         sessionPayloads[`currentSession/${auth.user.uid}`] = sessionPayload;
         sessionPayloads[`users/${auth.user.uid}/sessions/${sessionKey}`] = {'createdAt': createdAt};
+
+        this.loggedIn = true;
         return this.db.database.ref().update(sessionPayloads);
       })
       .catch(error => {
@@ -73,19 +74,13 @@ export class LoginService {
 
   signOut() {
     this.afAuth.auth.signOut();
+    this.loggedIn = false;
     this.router.navigate(['/login']);
-  }
-
-  getAdminList(){
-    return this.adminRef.valueChanges();
-    //this.db.database.ref('/admins').once('value', function(snapshot){
-    //  return snapshot.toJSON();
-    //});
   }
 
   getAdmins(){return this.db.list(`/admins`)
   .snapshotChanges()
-  .pipe(map(items => { .            // <== new way of chaining
+  .pipe(map(items => {             // <== new way of chaining
     return items.map(a => {
       const data = a.payload.val();
       const key = a.payload.key;

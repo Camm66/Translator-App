@@ -1,11 +1,17 @@
-<form (ngSubmit)="search()">
-  <div class="form-group">
-    <label for="search" #title>Wikipedia Search</label>
-  </div>
-    <input type="text" class="form-control" id="search" name="searchText" required [(ngModel)]='searchText'>
-    <button type="submit" class="btn btn-success" onClick="gtag('event', 'search')">Search</button>
-</form>
-
+<div id='searchBarContainer' class='card-group card p-4 card-body'>
+  <form (ngSubmit)="search()">
+    <div class="form-group">
+      <label for="search" #title>Wikipedia Search</label>
+    </div>
+    <span id='search'>
+      <input type="text" class="form-control" id="search" name="searchText"
+             placeholder='Enter search term...' required [(ngModel)]='searchText'>
+      <button type="submit" class="btn btn-success" onClick="gtag('event', 'search')" id='searchBtn'>Search</button>
+    </span>
+  </form>
+  <br>
+  <br>
+<div>
 
 <div id='resultContainer'>
   <div *ngIf="wikiResults">

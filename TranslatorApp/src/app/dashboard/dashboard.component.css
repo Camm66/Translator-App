@@ -1,0 +1,7 @@
+#search{
+  display: inline-flex;
+}
+
+#searchBtn{
+  float: right;
+}

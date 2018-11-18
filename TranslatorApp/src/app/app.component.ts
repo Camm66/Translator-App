@@ -8,12 +8,12 @@ import { LoginService } from './login/login.service';
 })
 export class AppComponent {
   title = 'TranslatorApp';
-
+  loggedIn: boolean;
   constructor(private loginService: LoginService){
-
+    this.loggedIn = false;
   }
 
   logout() {
-  this.loginService.signOut();
+    this.loginService.signOut();
   }
 }

@@ -1,7 +1,10 @@
-<nav class="nav">
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/history">History</a>
-  <button (click)="logout()" class="btn btn-primary btn-danger"
-  *ngIf='loginService.userUid != null'> Logout </button>
-</nav>
-<router-outlet></router-outlet>
+<div id="appContainer">
+  <nav *ngIf='loginService.userUid'>
+    <ul>
+      <li><a [routerLink]="['/dashboard']">Home</a></li>
+      <li><a [routerLink]="['/history']">User History</a></li>
+      <li id="loginBtn"><a href='#' (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { LoginService} from './login.service';
 import { Observable } from 'rxjs/Observable';
@@ -6,7 +6,7 @@ import { Subscription } from "rxjs/Subscription";
 import { map, take, tap } from 'rxjs/operators';
 
 @Injectable()
-export class AuthGuard implements CanActivate, OnInit {
+export class AuthGuard implements CanActivate{
   adminList: any;
   adminSubscription: Subscription;
   constructor(private authService: LoginService, private router: Router) {}
