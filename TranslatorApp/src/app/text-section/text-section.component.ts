@@ -9,6 +9,7 @@ import { GoogleTranslateService, GoogleQuery } from '../google-translate.service
 })
 export class TextSectionComponent implements OnInit {
   @Input() text: string;
+  @Input() language: string;
   @ViewChild('textContainer') textContainer;
   languageConfig: GoogleQuery;
   constructor(private googleTranslateService: GoogleTranslateService,
@@ -18,7 +19,9 @@ export class TextSectionComponent implements OnInit {
   }
 
   translateText(){
+    var target = this.language;
     var translation;
+    this.languageConfig.target = target;
     this.googleTranslateService.translate(this.text, this.languageConfig).subscribe((res: any) => {
            translation = res.data.translations[0].translatedText;
            this.renderResults(translation);
@@ -26,11 +29,11 @@ export class TextSectionComponent implements OnInit {
                                      this.textContainer.nativeElement.childNodes[0]);
           this.historyService.updateHistoryTranslation(this.text, translation);
            if(this.languageConfig.source == 'en'){
-             this.languageConfig.source = 'es';
+             this.languageConfig.source = target;
              this.languageConfig.target = 'en';
            } else {
              this.languageConfig.source = 'en';
-             this.languageConfig.target = 'es';
+             this.languageConfig.target = target;
            }
          },
          err => {

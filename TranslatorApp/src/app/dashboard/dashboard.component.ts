@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WikipediaService } from '../wikipedia.service';
 import { HistoryService } from '../history/history.service';
 
@@ -9,13 +9,16 @@ import { HistoryService } from '../history/history.service';
   styleUrls: ['./dashboard.component.css']
 })
 
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit {
   searchText: string;
+  language: string;
   wikiResults: any;
   wikiText: any;
   constructor(private wikipediaService: WikipediaService,
               private historyService: HistoryService) {
                 this.wikiText = [];
+                this.language = 'es';
+                console.log(this.language);
               }
 
   search(){
@@ -37,8 +40,4 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
   }
-
-  ngAfterViewInit(){
-  }
-
 }
