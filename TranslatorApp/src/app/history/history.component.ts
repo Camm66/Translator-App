@@ -8,14 +8,14 @@ import { Subscription } from "rxjs/Subscription";
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  searches: any;
+    userHistory: any;
     historySubscription: Subscription;
     constructor(private historyService: HistoryService) {
     }
 
     ngOnInit() {
       this.historySubscription = this.historyService.getSearchHistory()
-      .subscribe((history: any) => { this.searches = history; });
+      .subscribe((history: any) => { this.userHistory = history;});
     }
 
     ngOnDestroy(){

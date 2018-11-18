@@ -7,10 +7,10 @@ export class HistoryService {
   searchHistoryRef: any;
   constructor(private loginService: LoginService,
               private db: AngularFireDatabase) {
-    this.searchHistoryRef = this.db.list(`/searchHistory`);
+    this.searchHistoryRef = this.db.list(`/userHistory`);
   }
 
-  updateHistory(action, text, translation) {
+  updateHistoryTranslation(text, translation) {
     var d = new Date();
     var dformat = [d.getMonth()+1,
                d.getDate(),
@@ -19,11 +19,26 @@ export class HistoryService {
                d.getMinutes(),
                d.getSeconds()].join(':');
 
-    this.searchHistoryRef.push({ Userid: this.loginService.userUid,
+    this.searchHistoryRef.push({ userUid: this.loginService.userUid,
                                  timestamp: dformat,
-                                 action: action,
+                                 action: 'translate',
                                  text: text,
                                  translation: translation});
+  }
+
+  updateHistorySearch(text) {
+    var d = new Date();
+    var dformat = [d.getMonth()+1,
+               d.getDate(),
+               d.getFullYear()].join('/')+' '+
+              [d.getHours(),
+               d.getMinutes(),
+               d.getSeconds()].join(':');
+
+    this.searchHistoryRef.push({ userUid: this.loginService.userUid,
+                                 timestamp: dformat,
+                                 action: 'search',
+                                 text: text});
   }
 
   getSearchHistory(){

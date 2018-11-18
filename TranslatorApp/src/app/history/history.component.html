@@ -1,8 +1,10 @@
 <div>
-  <h1>Search History</h1>
-  <div *ngIf='searches'>
-    <div *ngFor="let search of searches">
-      {{search.Userid}} {{search.searchText}} {{search.timestamp}}
+  <h1>User Action History</h1>
+  <div *ngIf='userHistory'>
+    <div *ngFor="let item of userHistory">
+      <span>{{item.timestamp}}</span>
+      <span>User ID: {{item.userUid}}</span>
+      <span>Action: {{item.action}}</span>
     </div>
   </div>
 </div>

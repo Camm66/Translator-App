@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   this.wikipediaService.search(this.searchText)
     .subscribe((res: any) => this.wikipediaService.searchForPage(res)
       .subscribe((res: any) => this.parseWikiResults(res)));
+    this.historyService.updateHistorySearch(this.searchText);
   }
 
   parseWikiResults(res){

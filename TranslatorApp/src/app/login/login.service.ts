@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -10,15 +11,15 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class LoginService {
   authState: Observable<{} | null>;
-
   user: Observable<{} | null>;
   userUid: string;
+  adminRef: any;
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
     private db: AngularFireDatabase
   ) {
-
+    this.adminRef = this.db.list(`/admins`);
     this.user = this.afAuth.authState
     .switchMap((user) => {
       if (user) {
@@ -72,6 +73,23 @@ export class LoginService {
 
   signOut() {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
+
+  getAdminList(){
+    return this.adminRef.valueChanges();
+    //this.db.database.ref('/admins').once('value', function(snapshot){
+    //  return snapshot.toJSON();
+    //});
+  }
+
+  getAdmins(){return this.db.list(`/admins`)
+  .snapshotChanges()
+  .pipe(map(items => { .            // <== new way of chaining
+    return items.map(a => {
+      const data = a.payload.val();
+      const key = a.payload.key;
+      return {key, data};           // or {key, ...data} in case data is Obj
+    });
+  }));}
 }

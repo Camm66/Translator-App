@@ -24,6 +24,7 @@ export class TextSectionComponent implements OnInit {
            this.renderResults(translation);
            this.renderer.removeChild(this.textContainer.nativeElement,
                                      this.textContainer.nativeElement.childNodes[0]);
+          this.historyService.updateHistoryTranslation(this.text, translation);
            if(this.languageConfig.source == 'en'){
              this.languageConfig.source = 'es';
              this.languageConfig.target = 'en';
@@ -49,6 +50,7 @@ export class TextSectionComponent implements OnInit {
            this.renderer.removeChild(span, span.childNodes[0]);
            const newText = this.renderer.createText(String(translatedWord) + " ")
            const textSpan = this.renderer.createElement('span');
+           this.renderer.addClass(textSpan, 'word');
            this.renderer.listen(textSpan, "click", (event) => {
              this.translateWord(span, this.languageConfig.target, this.languageConfig.source);
            });
@@ -69,6 +71,7 @@ export class TextSectionComponent implements OnInit {
     for(var i = 0; i < translatedWords.length; i++){
       const span = this.renderer.createElement('span');
       const textSpan = this.renderer.createElement('span');
+      this.renderer.addClass(textSpan, 'word');
       const text = this.renderer.createText(translatedWords[i] + " ");
       this.renderer.listen(textSpan, "click", (event) => {
         this.translateWord(span, this.languageConfig.source, this.languageConfig.target);
