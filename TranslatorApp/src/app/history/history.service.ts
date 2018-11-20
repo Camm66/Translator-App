@@ -11,34 +11,34 @@ export class HistoryService {
   }
 
   updateHistoryTranslation(text, translation) {
-    var d = new Date();
-    var dformat = [d.getMonth()+1,
-               d.getDate(),
-               d.getFullYear()].join('/')+' '+
-              [d.getHours(),
-               d.getMinutes(),
-               d.getSeconds()].join(':');
-
+    var date = new Date();
+    var dformat = this.formatDate(date);
     this.searchHistoryRef.push({ userUid: this.loginService.userUid,
-                                 timestamp: dformat,
+                                 date: dformat,
+                                 timestamp: date.getTime(),
                                  action: 'translate',
                                  text: text,
                                  translation: translation});
   }
 
   updateHistorySearch(text) {
-    var d = new Date();
-    var dformat = [d.getMonth()+1,
+    var date = new Date();
+    var dformat = this.formatDate(date);
+    this.searchHistoryRef.push({ userUid: this.loginService.userUid,
+                                 date: dformat,
+                                 timestamp: date.getTime(),
+                                 action: 'search',
+                                 text: text});
+  }
+
+  formatDate(d){
+    var formatdDate = [d.getMonth()+1,
                d.getDate(),
                d.getFullYear()].join('/')+' '+
               [d.getHours(),
                d.getMinutes(),
                d.getSeconds()].join(':');
-
-    this.searchHistoryRef.push({ userUid: this.loginService.userUid,
-                                 timestamp: dformat,
-                                 action: 'search',
-                                 text: text});
+    return formatdDate;
   }
 
   getSearchHistory(){

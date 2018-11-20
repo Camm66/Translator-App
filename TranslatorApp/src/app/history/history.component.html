@@ -1,10 +1,15 @@
-<div>
+<div class="card p-4 card-body">
   <h1>User Action History</h1>
+  <br>
   <div *ngIf='userHistory'>
+    <button (click)="sortHistory()" *ngIf='sortFlag' class="btn">Sort by Oldest</button>
+    <button (click)="sortHistory()" *ngIf='!sortFlag' class="btn">Sort by Newest</button>
     <div *ngFor="let item of userHistory">
-      <span>{{item.timestamp}}</span>
-      <span>User ID: {{item.userUid}}</span>
-      <span>Action: {{item.action}}</span>
+      <span><b>Timestamp:</b> {{item.date}}</span>
+      <span><b>User ID:</b> {{item.userUid}}</span>
+      <span><b>Action:</b> {{item.action}}</span>
+      <br>
+      <br>
     </div>
   </div>
 </div>

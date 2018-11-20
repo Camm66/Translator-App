@@ -1,17 +1,22 @@
-<div id='searchBarContainer' class='card-group card p-4 card-body'>
-  <form (ngSubmit)="search()">
+<div class="card p-4 card-body">
+<div class="tools">
+<div id='searchBarContainer'>
+  <button class="btn btn-success" (click)="reload()" *ngIf="wikiResults">
+    Would you like to search again?
+  </button>
+  <form (ngSubmit)="search()" *ngIf="!wikiResults">
     <div class="form-group">
       <label for="search" #title>Wikipedia Search</label>
     </div>
     <span id='search'>
       <input type="text" class="form-control" id="search" name="searchText"
              placeholder='Enter search term...' required [(ngModel)]='searchText'>
-      <button type="submit" class="btn btn-success" onClick="gtag('event', 'search')" id='searchBtn'>Search</button>
+      <button type="submit" class="btn btn-primary" id='searchBtn'>Search</button>
     </span>
   </form>
   <br>
   <br>
-<div>
+</div>
 
 <div id='languageContainer'>
   <div class="form-group">
@@ -27,11 +32,23 @@
   <br>
   <br>
 </div>
+</div>
 
 <div id='resultContainer'>
+  <div *ngIf="!wikiResults" id='instructions'>
+    <p>
+      <h4>Translator-App Instructions:</h4>
+      <ol>
+        <li><i>Search: </i>Type the article you'd like to translate in the search bar above.</li>
+        <br>
+        <li><i>Translate: </i>Then, select the language from the drop down menu and click
+          the translate button that appears next to your search results.</li>
+      </ol>
+  </div>
   <div *ngIf="wikiResults">
     <h3>{{wikiResults.title}}</h3>
     <app-text-section *ngFor="let text of wikiText" [text]="text" [language]="language">
     </app-text-section>
   </div>
+</div>
 </div>

@@ -26,6 +26,7 @@ export class LoginService {
         console.log('SWITCHMAP');
         console.log(user);
         console.log('SWITCHMAP');
+        this.loggedIn = true;
         return this.db.object(`users/${user.uid}`).update({email: user.email}).then( () => {
           return this.db.object(`users/${user.uid}`).valueChanges();
         }).catch( (error) => {
@@ -42,7 +43,6 @@ export class LoginService {
   loginWithEmail(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log(auth.user.uid);
         const createdAt = firebase.database.ServerValue.TIMESTAMP;
         console.log('CREATED AT');
         console.log(createdAt);
@@ -64,6 +64,10 @@ export class LoginService {
         sessionPayloads[`users/${auth.user.uid}/sessions/${sessionKey}`] = {'createdAt': createdAt};
 
         this.loggedIn = true;
+        setTimeout(() => {
+          console.log("Max session time-limit exceeded...");
+          this.signOut();
+        }, 300000);
         return this.db.database.ref().update(sessionPayloads);
       })
       .catch(error => {
@@ -73,6 +77,7 @@ export class LoginService {
   }
 
   signOut() {
+    console.log("Signing out...");
     this.afAuth.auth.signOut();
     this.loggedIn = false;
     this.router.navigate(['/login']);
@@ -80,11 +85,11 @@ export class LoginService {
 
   getAdmins(){return this.db.list(`/admins`)
   .snapshotChanges()
-  .pipe(map(items => {             // <== new way of chaining
+  .pipe(map(items => {
     return items.map(a => {
       const data = a.payload.val();
       const key = a.payload.key;
-      return {key, data};           // or {key, ...data} in case data is Obj
+      return {key, data};
     });
   }));}
 }

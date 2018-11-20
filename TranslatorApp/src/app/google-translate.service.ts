@@ -11,7 +11,7 @@ export class GoogleTranslateService {
 
   translate(text: string, settings: GoogleQuery) {
     settings.q = text;
-    return this.http.post(this.url, settings);
+      return this.http.post(this.url, settings);
   }
 
 }

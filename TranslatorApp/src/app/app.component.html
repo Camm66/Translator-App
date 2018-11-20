@@ -1,5 +1,5 @@
 <div id="appContainer">
-  <nav *ngIf='loginService.userUid'>
+  <nav *ngIf='loginService.loggedIn'>
     <ul>
       <li><a [routerLink]="['/dashboard']">Home</a></li>
       <li><a [routerLink]="['/history']">User History</a></li>

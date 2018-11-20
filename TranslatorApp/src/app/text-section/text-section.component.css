@@ -1,3 +1,29 @@
+#textGrid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+  padding: 10px;
+}
+
+#textContainer {
+  border-radius: 5px;
+  grid-column: 1;
+  padding: 5px;
+}
+
+#translateBtn{
+  grid-column: 2;
+}
+
+.notTranslated {
+  border: 1px solid;
+}
+
+.isTranslated {
+  border: 2px solid;
+  border-color: red;
+}
+
 .word {
   background-color: transparent;
 }

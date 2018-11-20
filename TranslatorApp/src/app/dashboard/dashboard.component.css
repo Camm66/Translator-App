@@ -1,7 +1,29 @@
-#search{
-  display: inline-flex;
+#search{  display: inline-flex;
 }
 
 #searchBtn{
   float: right;
+}
+
+#searchBarContainer{
+  grid-column: 1;
+}
+
+#languageContainer{
+  grid-column: 2;
+}
+
+#instructions{
+  margin-bottom: 24px;
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+  padding: 10px;
+}
+
+h3, h4 {
+  text-align: center;
 }

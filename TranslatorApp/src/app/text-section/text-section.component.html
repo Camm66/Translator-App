@@ -1,7 +1,11 @@
-<div #textContainer>
-  <p>{{text}}</p>
+<div id="textGrid">
+  <div id="textContainer"
+       [ngClass]="{isTranslated: isTranslated, notTranslated: !isTranslated}">
+    <div #textBox>
+      <p>{{text}}</p>
+    </div>
+  </div>
+    <button type="submit" class="btn btn-info" (click)="translateText()"
+            id="translateBtn" [ngClass]="{isTranslated: isTranslated, notTranslated: !isTranslated}"> Translate</button>
 </div>
-<button type="submit" class="btn btn-info" (click)="translateText()"
-        onClick="gtag('event', 'translate')">
-        Translate</button>
 <br>

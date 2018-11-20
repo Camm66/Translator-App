@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterService } from './register.service';
 
@@ -9,20 +9,20 @@ import { RegisterService } from './register.service';
 export class RegisterComponent {
   email: string;
   password: string;
+  @ViewChild('invalidMsg') invalidMsg;
   constructor(private router: Router,
-              private registerService: RegisterService) { }
+              private registerService: RegisterService,
+              private renderer: Renderer2) { }
 
   addNewUser(){
     var password = <HTMLInputElement>document.getElementById("password");
     var confirm_password = <HTMLInputElement>document.getElementById("confirm_password");
-    console.log(password.value);
-    console.log(confirm_password.value);
-    if(password.value == confirm_password.value){
+    if(password.value === confirm_password.value){
       this.registerService.addNewUser(this.email, this.password);
     } else {
-      //FIX ME
-      document.getElementById("invalidMsg").innerHTML = "Passwords Don't Match!";
       confirm_password.setCustomValidity("Passwords Don't Match");
+      const text = this.renderer.createText("Passwords Don't Match!");
+      this.renderer.appendChild(this.invalidMsg.nativeElement, text);
     }
   }
 }

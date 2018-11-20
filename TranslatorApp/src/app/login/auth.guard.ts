@@ -14,9 +14,11 @@ export class AuthGuard implements CanActivate{
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
+
     if(next.routeConfig['path'] == 'history'){
       return this.canActivateAsAdmin(next, state);
     }
+
     else {
       return this.authService.user.pipe(
         take(1),
@@ -43,16 +45,14 @@ export class AuthGuard implements CanActivate{
         }
         else {
           this.authService.getAdmins().subscribe((admins: any) => {
-            console.log(admins);
-            console.log(this.authService.userUid);
             for(var i = 0; i < admins.length; i++){
                 if(this.authService.userUid == admins[i].key){
                   if(admins[i].data == true){
-                    console.log("user is admin");
+                    console.log("User is an admin");
                     return;
                   }}}
-            console.log('NOT ADMINs');
-            this.router.navigate(['/login']);
+            console.log('Must be an admin to access');
+            this.router.navigate(['/']);
           });
         }
       }),
