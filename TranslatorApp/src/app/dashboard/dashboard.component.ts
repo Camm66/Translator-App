@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
 import { WikipediaService } from '../wikipedia.service';
 import { HistoryService } from '../history/history.service';
 
@@ -16,7 +17,8 @@ export class DashboardComponent {
   wikiResults: any;
   wikiText: any;
   constructor(private wikipediaService: WikipediaService,
-              private historyService: HistoryService) {
+              private historyService: HistoryService,
+              private router: Router) {
                 this.wikiText = [];
                 this.language = 'es';
               }
@@ -52,6 +54,7 @@ export class DashboardComponent {
   }
 
   reload(){
-    window.location.reload();
+    this.router.navigateByUrl('/login', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/dashboard"]));
   }
 }

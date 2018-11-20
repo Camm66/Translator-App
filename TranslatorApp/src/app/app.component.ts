@@ -9,7 +9,7 @@ import { LoginService } from './login/login.service';
 export class AppComponent {
   title = 'TranslatorApp';
   loggedIn: boolean;
-  constructor(private loginService: LoginService){
+  constructor(public loginService: LoginService){
     this.loggedIn = false;
   }
 
