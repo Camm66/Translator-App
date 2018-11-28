@@ -1,6 +1,6 @@
 import { Component, OnChanges, Input, Renderer2, ViewChild } from '@angular/core';
 import { HistoryService } from '../history/history.service';
-import { GoogleTranslateService, GoogleQuery } from '../google-translate.service'
+import { GoogleTranslateService, GoogleQuery } from '../google-translate.service';
 
 declare let gtag: any;
 
