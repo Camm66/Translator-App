@@ -1,6 +1,14 @@
 # TranslatorApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
+This app allows users to search for wikipedia articles and translate individual words or sections in the specified language. 
+The following technologies are employed:
+
+* Angular version 6.2.5
+* Firebase realtime database
+* MediaWiki API 
+* Google Translate API
+* Google Analytics API
+
 
 ## Development server
 
