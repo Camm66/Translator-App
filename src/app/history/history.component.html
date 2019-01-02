@@ -1,15 +1,39 @@
+<style>
+table {
+  font-size: 15px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
 <div class="card p-4 card-body">
   <h1>User Action History</h1>
   <br>
   <div *ngIf='userHistory'>
     <button (click)="sortHistory()" *ngIf='sortFlag' class="btn">Sort by Oldest</button>
     <button (click)="sortHistory()" *ngIf='!sortFlag' class="btn">Sort by Newest</button>
-    <div *ngFor="let item of userHistory">
-      <span><b>Timestamp:</b> {{item.date}}</span>
-      <span><b>User ID:</b> {{item.userUid}}</span>
-      <span><b>Action:</b> {{item.action}}</span>
-      <br>
-      <br>
-    </div>
+    <table>
+      <tr>
+        <th>Timestamp</th>
+        <th>User ID</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let item of userHistory">
+        <td>{{item.date}}</td>
+        <td>{{item.userUid}}</td>
+        <td>{{item.action}}</td>
+      </tr>
+    </table>
   </div>
 </div>
