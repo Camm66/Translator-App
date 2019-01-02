@@ -1,20 +1,41 @@
-#search{  display: inline-flex;
+#search{
+  display: inline-flex;
+}
+
+#search input{
+  font-size: 15px;
 }
 
 #searchBtn{
+  font-size: 11px;
+  font-weight: bold;
   float: right;
 }
 
+#searchAgainBtn {
+  font-size: 100%;
+  margin-top: 20px;
+}
+
+
 #searchBarContainer{
+  font-size: 15px;
   grid-column: 1;
 }
 
 #languageContainer{
+  font-size: 15px;
   grid-column: 2;
 }
 
 #instructions{
   margin-bottom: 24px;
+}
+#instructions h4{
+  margin-bottom: 20px;
+}
+#instructions li{
+  font-size: 15px;
 }
 
 .tools {
@@ -25,5 +46,6 @@
 }
 
 h3, h4 {
+  font-size: 25px;
   text-align: center;
 }

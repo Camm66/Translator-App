@@ -1,7 +1,7 @@
 <div class="card p-4 card-body">
 <div class="tools">
 <div id='searchBarContainer'>
-  <button class="btn btn-success" (click)="reload()" *ngIf="wikiResults">
+  <button class="btn btn-success" (click)="reload()" *ngIf="wikiResults" id="searchAgainBtn">
     Would you like to search again?
   </button>
   <form (ngSubmit)="search()" *ngIf="!wikiResults">
